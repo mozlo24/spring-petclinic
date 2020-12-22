@@ -26,6 +26,11 @@ jobs:
       uses: scacap/action-surefire-report@v1
       with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Code coverage
+      uses: romeovs/lcov-reporter-action@v0.2.16
+      with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          lcov-file: ./coverage/lcov.info
     - name: Create executable Jarfile
       run: mvn -B package -Dmaven.test.skip=true --file pom.xml
     - name: Deploy to heroku  
